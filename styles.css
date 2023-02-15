@@ -1,0 +1,60 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding-top: 5rem;
+  height: 100vh;
+}
+
+.app {
+  width: 60rem;
+  height: 70rem;
+  margin: auto;
+  padding: 1.25rem;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+}
+
+.message-board {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+/* Message containers */
+.message {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Darker chat container */
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+/* Clear floats */
+.message::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Style time text */
+.time {
+  float: left;
+  color: #aaa;
+}
+
+/* Style time text */
+.darker .time {
+  float: left;
+  color: #999;
+}
