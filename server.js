@@ -1,8 +1,8 @@
 import express from "express";
-import articleRouter from "./routes/articles.js";
+import messageRouter from "./routes/messages.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import Article from "./models/Article.js";
+import Message from "./models/Messages.js";
 import methodOverride from "method-override";
 
 dotenv.config();
@@ -30,14 +30,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 
 // Setting up routes and routers
-app.use("/articles", articleRouter);
+// app.use("/articles", articleRouter);
 
-app.get("/", async (req, res) => {
-  const articles = await Article.find().sort({
-    createdAt: "desc",
-  });
-  res.render("articles/index", { articles });
-});
+// app.get("/", async (req, res) => {
+//   const articles = await Article.find().sort({
+//     createdAt: "desc",
+//   });
+//   res.render("articles/index", { articles });
+// });
 
 const PORT = process.env.PORT || 5050;
 
