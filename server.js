@@ -1,6 +1,5 @@
 import express from "express";
 import indexRouter from "./routes/index.js";
-// import mongoose from "mongoose";
 import dotenv from "dotenv";
 import methodOverride from "method-override";
 
@@ -8,17 +7,6 @@ dotenv.config();
 
 // Create the express app
 const app = express();
-
-// Connect to MongoDB Atlas
-// mongoose.set("strictQuery", false);
-// const mongoDB = process.env.MONGO_URI || "mongodb://localhost:27017";
-
-// main().catch((err) => console.log(err));
-// async function main() {
-//   mongoose.connect(mongoDB, () => {
-//     console.log("Connected to DB");
-//   });
-// }
 
 // ---------- Configure express ---------- //
 // Sets the view engine to ejs
