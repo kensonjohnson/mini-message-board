@@ -4,6 +4,9 @@
   "description": "App written with Node.js, ExpressJS, and mongoose (MongoDB).",
   "main": "server.js",
   "type": "module",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
