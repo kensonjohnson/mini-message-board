@@ -1,8 +1,7 @@
 import express from "express";
-import messageRouter from "./routes/messages.js";
-import mongoose from "mongoose";
+import indexRouter from "./routes/index.js";
+// import mongoose from "mongoose";
 import dotenv from "dotenv";
-import Message from "./models/Messages.js";
 import methodOverride from "method-override";
 
 dotenv.config();
@@ -11,15 +10,15 @@ dotenv.config();
 const app = express();
 
 // Connect to MongoDB Atlas
-mongoose.set("strictQuery", false);
-const mongoDB = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER_NAME}.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+// mongoose.set("strictQuery", false);
+// const mongoDB = process.env.MONGO_URI || "mongodb://localhost:27017";
 
-main().catch((err) => console.log(err));
-async function main() {
-  mongoose.connect(mongoDB, () => {
-    console.log("Connected to DB");
-  });
-}
+// main().catch((err) => console.log(err));
+// async function main() {
+//   mongoose.connect(mongoDB, () => {
+//     console.log("Connected to DB");
+//   });
+// }
 
 // ---------- Configure express ---------- //
 // Sets the view engine to ejs
@@ -28,17 +27,17 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 // Let's us use methods other than just POST or GET
 app.use(methodOverride("_method"));
+// Use Static files
+app.use(express.static("public"));
 
-// Setting up routes and routers
-// app.use("/articles", articleRouter);
+// -------------- Setup Routes -------------- //
+app.use("/", indexRouter);
 
-// app.get("/", async (req, res) => {
-//   const articles = await Article.find().sort({
-//     createdAt: "desc",
-//   });
-//   res.render("articles/index", { articles });
-// });
+// -------------- Open Port -------------- //
 
 const PORT = process.env.PORT || 5050;
 
-app.listen(PORT);
+app.listen(PORT, () => {
+  if (app.settings.env === "development")
+    console.log(`App started. \nVisit localhost:${PORT} in your browser`);
+});
